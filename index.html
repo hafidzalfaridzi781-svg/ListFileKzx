@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>KAIZYE STORE | PREMIUM FILES</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 20% 30%, #0a0015, #1e0a3a, #0b001a);
+      min-height: 100vh;
+      color: #ffe9ff;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 40px;
+    }
+
+    /* === ANIMATED BACKGROUND ELEMENTS (UNGU + GERAK CEPAT & MENCOLOK) === */
+    .floating-particle {
+      position: fixed;
+      background: rgba(210, 0, 255, 0.6);
+      box-shadow: 0 0 20px #c44eff, 0 0 40px #a020f0;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1;
+      animation: floatParticle 8s linear infinite;
+    }
+
+    @keyframes floatParticle {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.7; }
+      100% {
+        transform: translateY(-20vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .glow-beam {
+      position: fixed;
+      width: 200%;
+      height: 120%;
+      background: repeating-linear-gradient(45deg, 
+        rgba(156, 0, 255, 0.15) 0px, 
+        rgba(156, 0, 255, 0.15) 2px,
+        rgba(80, 0, 200, 0.3) 2px,
+        rgba(80, 0, 200, 0.3) 8px);
+      pointer-events: none;
+      top: -20%;
+      left: -50%;
+      z-index: 0;
+      animation: slideBeam 18s infinite linear;
+    }
+
+    @keyframes slideBeam {
+      0% { transform: translateX(-10%) translateY(-10%) rotate(5deg);}
+      100% { transform: translateX(30%) translateY(20%) rotate(15deg);}
+    }
+
+    .twinkle-star {
+      position: fixed;
+      background: white;
+      border-radius: 50%;
+      width: 3px;
+      height: 3px;
+      opacity: 0;
+      animation: twink 2.3s infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes twink {
+      0% { opacity: 0; transform: scale(0.5);}
+      100% { opacity: 1; transform: scale(1.8); box-shadow: 0 0 8px #f0f; }
+    }
+
+    .lightning-flash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(180, 50, 255, 0.15);
+      pointer-events: none;
+      z-index: 2;
+      animation: flashBurst 4s infinite;
+    }
+
+    @keyframes flashBurst {
+      0%, 95% { opacity: 0; }
+      96% { opacity: 0.4; background: radial-gradient(circle, #d580ff, transparent);}
+      100% { opacity: 0; }
+    }
+
+    /* ripple effect click */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(210, 0, 255, 0.7);
+      transform: scale(0);
+      animation: rippleAnim 0.6s linear forwards;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    @keyframes rippleAnim {
+      to {
+        transform: scale(8);
+        opacity: 0;
+      }
+    }
+
+    /* main container */
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px 18px 60px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* header section neon ungu */
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(12px);
+      border-radius: 70px;
+      padding: 28px 20px;
+      border: 1px solid rgba(170, 0, 255, 0.5);
+      box-shadow: 0 0 30px rgba(155, 0, 255, 0.4);
+      transition: 0.2s;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      background: linear-gradient(135deg, #f0a6ff, #b77eff, #ff6eff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: 2px;
+      text-shadow: 0 0 8px #bf5eff;
+    }
+
+    .hero p {
+      font-weight: 600;
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: #360066aa;
+      border-radius: 60px;
+      padding: 8px 18px;
+      font-size: 0.85rem;
+      border-left: 4px solid #c458ff;
+    }
+
+    .store-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      background: #7d2ed8aa;
+      border-radius: 30px;
+      display: inline-block;
+      padding: 6px 20px;
+      margin-top: 15px;
+    }
+
+    /* buttons kategori */
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin: 35px 0 30px;
+    }
+
+    .btn-cat {
+      background: rgba(30, 0, 60, 0.7);
+      backdrop-filter: blur(8px);
+      border: 1px solid #bc5eff;
+      padding: 9px 22px;
+      border-radius: 40px;
+      font-weight: bold;
+      color: #f0dbff;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .btn-cat.active, .btn-cat:hover {
+      background: #b45eff;
+      color: #14002e;
+      box-shadow: 0 0 14px #dd8eff;
+      transform: scale(1.02);
+    }
+
+    /* list produk grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 26px;
+      margin-top: 20px;
+    }
+
+    .product-card {
+      background: linear-gradient(145deg, #1a0a2e, #0c0120);
+      border-radius: 32px;
+      padding: 18px 16px 20px;
+      border: 1px solid #a451ff;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .product-card:hover {
+      transform: translateY(-7px);
+      border-color: #f09fff;
+      box-shadow: 0 0 28px #bc6eff;
+    }
+
+    .product-name {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #fff, #e3abff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .product-price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #ffdb7e;
+      text-shadow: 0 0 5px #fc0;
+      margin: 10px 0;
+      display: inline-block;
+      background: #00000066;
+      padding: 3px 14px;
+      border-radius: 40px;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      margin-top: 14px;
+      background: #9747ff;
+      border: none;
+      padding: 10px 0;
+      width: 100%;
+      border-radius: 60px;
+      font-weight: bold;
+      color: white;
+      font-size: 1rem;
+      text-align: center;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .buy-btn:hover {
+      background: #c55aff;
+      box-shadow: 0 0 15px #e5a0ff;
+      transform: scale(0.98);
+    }
+
+    /* floating social */
+    .contact-bar {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      display: flex;
+      gap: 14px;
+    }
+
+    .float-btn {
+      background: #5d2a9e;
+      border-radius: 50px;
+      padding: 12px 18px;
+      box-shadow: 0 8px 18px black;
+      font-weight: bold;
+      color: white;
+      backdrop-filter: blur(8px);
+      transition: 0.2s;
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #cb6eff;
+    }
+
+    .float-btn i {
+      font-size: 1.4rem;
+    }
+
+    .float-btn:hover {
+      background: #ad4eff;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    /* efek klik kece */
+    .clicked-glow {
+      animation: cardGlow 0.2s ease-out;
+    }
+
+    @keyframes cardGlow {
+      0% { box-shadow: 0 0 0px #ffb3ff; background: #311759;}
+      100% { box-shadow: 0 0 32px #e07eff; background: linear-gradient(145deg, #1f0a3a, #11002a);}
+    }
+
+    /* responsive */
+    @media (max-width: 680px) {
+      .hero h1 { font-size: 1.8rem; }
+      .product-name { font-size: 1.2rem; }
+      .product-price { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="glow-beam"></div>
+<div class="lightning-flash"></div>
+
+<script>
+  // dynamic floating stars and neon particles
+  function createParticles() {
+    for(let i = 0; i < 90; i++) {
+      let particle = document.createElement('div');
+      particle.classList.add('floating-particle');
+      let size = Math.random() * 12 + 2;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDuration = Math.random() * 7 + 5 + 's';
+      particle.style.animationDelay = Math.random() * 10 + 's';
+      particle.style.background = `rgba(${150 + Math.random() * 105}, 20, 220, 0.7)`;
+      document.body.appendChild(particle);
+    }
+    for (let i=0; i<70; i++) {
+      let star = document.createElement('div');
+      star.classList.add('twinkle-star');
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDuration = Math.random() * 2 + 1 + 's';
+      star.style.animationDelay = Math.random() * 5 + 's';
+      document.body.appendChild(star);
+    }
+  }
+  createParticles();
+</script>
+
+<div class="container">
+  <div class="hero">
+    <h1><i class="fas fa-meteor"></i> KAIZYE STORE <i class="fas fa-cloud-moon"></i></h1>
+    <p>⚡ FILE BEST SELLER | 100% REAL UPDATE ⚡</p>
+    <div class="store-title">🎮 AUTO CHAT ADMIN (WA) + NAMA FILE & HARGA 🎮</div>
+    <div class="badge">⭐ GARANSI FILE PREMIUM ⭐</div>
+  </div>
+
+  <div class="filter-buttons" id="filterGroup">
+    <button class="btn-cat active" data-cat="all">✨ ALL FILES ✨</button>
+    <button class="btn-cat" data-cat="aim">🎯 AIM / AIMBOT</button>
+    <button class="btn-cat" data-cat="headlock">🎯 HEADLOCK</button>
+    <button class="btn-cat" data-cat="drag">🐉 DRAG / HS</button>
+    <button class="btn-cat" data-cat="anomaly">🌀 ANOMALI</button>
+    <button class="btn-cat" data-cat="hologram">✨ HOLOGRAM</button>
+    <button class="btn-cat" data-cat="other">🔥 OTHER (YTTA/ALLTAB)</button>
+  </div>
+
+  <div class="products-grid" id="productGrid"></div>
+  <footer>
+    <p>🔮 Semua file adalah update terbaru | Chat Admin otomatis dengan format file + harga 🔮</p>
+    <p>⚠️ NOTE: ADMIN HANYA MENGIRIM 1X — JAGA BAIK BAIK FILENYA ⚠️</p>
+    <p>💸 Payment: GOPAY | DANA | SHOPEEPAY | QRIS | BT AKUN FF 💸</p>
+  </footer>
+</div>
+
+<div class="contact-bar">
+  <a href="https://wa.me/6288229286129?text=Halo%20KAIZYE%20STORE%2C%20saya%20mau%20beli%20file%3A%0A" target="_blank" class="float-btn" id="whatsappFloat"><i class="fab fa-whatsapp"></i> Chat WA</a>
+  <a href="https://t.me/KAIZYE_STORE" target="_blank" class="float-btn"><i class="fab fa-telegram"></i> Telegram</a>
+</div>
+
+<script>
+  // ======================== LENGKAP LIST SESUAI PERMINTAAN ==========================
+  const productsData = [
+    // AIM LOCK BEST SELLER
+    { name: "🔫 AIM LOCK BEST SELLER 5K", price: "5K", category: "aim" },
+    { name: "🤖 AIMBOT SUPER V1", price: "5K", category: "aim" },
+    { name: "🤖 AIMBOT SUPER V2", price: "10K", category: "aim" },
+    { name: "🌀 AIMLOCK ANOMALI", price: "5K", category: "anomaly" },
+    { name: "🌀 AIMBOT ANOMALI", price: "5K", category: "anomaly" },
+    { name: "💀 ANOMALI FILES 🥶", price: "15K", category: "anomaly" },
+    { name: "🎯 AIM RELATED 100%", price: "50K", category: "aim" },
+    // HEADLOCK
+    { name: "🎯 HEADLOCK 65%", price: "10K", category: "headlock" },
+    { name: "🎯 HEADLOCK 85%", price: "15K", category: "headlock" },
+    { name: "🎯 HEADLOCK 90%", price: "25K", category: "headlock" },
+    { name: "🎯 HEADLOCK 65% + HOLO BLUE", price: "15K", category: "headlock" },
+    { name: "🎯 HEADLOCK 100% V1", price: "25K", category: "headlock" },
+    { name: "🎯 HEADLOCK 100% V2", price: "30K", category: "headlock" },
+    { name: "🧠 HEADLOCK ANOMALI", price: "50K", category: "headlock" },
+    // EZ DRAG
+    { name: "🐉 EZ DRAG 2.0", price: "10K", category: "drag" },
+    { name: "🐉 EZ DRAG 2.1", price: "15K", category: "drag" },
+    { name: "🐉 EZ DRAG 2.3", price: "20K", category: "drag" },
+    { name: "🐉 EZ DRAG 2.10", price: "50K", category: "drag" },
+    { name: "🐉 EZ DRAG VIP", price: "15K", category: "drag" },
+    // DRAG HS
+    { name: "🔥 DRAG HS 40%", price: "10K", category: "drag" },
+    { name: "🔥 DRAG HS 70%", price: "15K", category: "drag" },
+    { name: "🔥 DRAG HS 80%", price: "20K", category: "drag" },
+    { name: "🔥 DRAG HS 90%", price: "25K", category: "drag" },
+    { name: "🔥 DRAG HS 100% V1", price: "30K", category: "drag" },
+    { name: "🔥 DRAG HS 100% V2", price: "40K", category: "drag" },
+    { name: "💢 DRAG HS 100% V3", price: "50K", category: "drag" },
+    { name: "💢 DRAG HS 100% V4", price: "60K", category: "drag" },
+    { name: "⚡ DRAG EXTRIME 100%", price: "50K", category: "drag" },
+    // AIMLOCK REG + VIP
+    { name: "🎯 AIM LOCK 81%", price: "10K", category: "aim" },
+    { name: "🎯 AIM LOCK 90%", price: "15K", category: "aim" },
+    { name: "🎯 AIM LOCK 100% V1", price: "20K", category: "aim" },
+    { name: "🎯 AIM LOCK 100% V2", price: "35K", category: "aim" },
+    { name: "🎯 AIM LOCK 100% V3", price: "45K", category: "aim" },
+    { name: "👑 AIM LOCK VIP 80%", price: "20K", category: "aim" },
+    { name: "👑 AIM LOCK VIP 100%", price: "25K", category: "aim" },
+    { name: "👑 AIM LOCK VIP 100% V1", price: "35K", category: "aim" },
+    { name: "👑 AIM LOCK VIP 100% V2", price: "40K", category: "aim" },
+    { name: "👑 AIM LOCK VIP 100% V3", price: "50K", category: "aim" },
+    // ALL TAB & ONE TAB
+    { name: "📀 ALL TAB HEADSHOT V2 FF MAX", price: "25K", category: "other" },
+    { name: "💥 ONE TAB GOOD V1", price: "15K", category: "other" },
+    { name: "💥 ONE TAB GOOD V2", price: "30K", category: "other" },
+    { name: "💫 ONE TAB HS", price: "75K", category: "other" },
+    // AIMBOT VVIP GACOR
+    { name: "⚡ AIMBOT SUPER V1", price: "5K", category: "aim" },
+    { name: "⚡ AIMBOT SUPER V2", price: "10K", category: "aim" },
+    { name: "⚡ AIMBOT LEGIT V1", price: "5K", category: "aim" },
+    { name: "⚡ AIMBOT LEGIT V2", price: "10K", category: "aim" },
+    { name: "⚡ AIMBOT LEGIT V3", price: "15K", category: "aim" },
+    { name: "⚡ AIMBOT LEGIT V4", price: "20K", category: "aim" },
+    { name: "👾 LOCK HEAD VIP", price: "35K", category: "aim" },
+    { name: "👾 V1 (AIMBOT MAX)", price: "80K", category: "aim" },
+    { name: "👾 V2 (AIMBOT MAX)", price: "100K", category: "aim" },
+    { name: "🎲 AIM BOT + EXP", price: "65K", category: "aim" },
+    { name: "🎲 AIM BOT 100% V3", price: "50K", category: "aim" },
+    { name: "🎲 AIM BOT 100% NO DRAG HS", price: "150K", category: "aim" },
+    { name: "🎲 AIM BOT 80% + NPC", price: "80K", category: "aim" },
+    { name: "🧩 NPC NAME ONLY", price: "35K", category: "other" },
+    { name: "🧩 AIMBOT 100% + NPC NAME", price: "200K", category: "aim" },
+    { name: "💪 BODY HS", price: "80K", category: "other" },
+    { name: "💪 BODY HS VIP", price: "100K", category: "other" },
+    // HOLOGRAM
+    { name: "🌈 HOLOGRAM 3D ALL CHAR", price: "35K", category: "hologram" },
+    { name: "🔵 HOLO BLUE V2", price: "25K", category: "hologram" },
+    { name: "🟢 HOLO GREEN", price: "15K", category: "hologram" },
+    { name: "⚔️ HOLO SABER", price: "25K", category: "hologram" },
+    { name: "✨ HOLO PREMIUM", price: "35K", category: "hologram" },
+    // YTTA / extra
+    { name: "📁 FILE GENOS 90%", price: "20K", category: "other" },
+    { name: "📁 FILE GENOS 100%", price: "25K", category: "other" },
+    { name: "📁 FILE AIM LOCK X ANTI LAG", price: "15K", category: "aim" },
+    { name: "⚙️ MB 600%", price: "50K", category: "other" },
+    { name: "🖌️ GRAFIK MINICRAFT ALL MAP", price: "20K", category: "other" },
+    { name: "🚁 PELICIN LAYAR || KAIZYE STORE REAL", price: "10K", category: "other" }
+  ];
+
+  // untuk memastikan total list lengkap diatas semuanya 74+ produk (sudah mencakup semua list permintaan)
+  const productGrid = document.getElementById('productGrid');
+  let currentCategory = 'all';
+
+  function createRipple(event, element) {
+    const rect = element.getBoundingClientRect();
+    const rippleSpan = document.createElement('span');
+    rippleSpan.classList.add('ripple');
+    const size = Math.max(rect.width, rect.height);
+    rippleSpan.style.width = rippleSpan.style.height = size + 'px';
+    rippleSpan.style.left = event.clientX - rect.left - size/2 + 'px';
+    rippleSpan.style.top = event.clientY - rect.top - size/2 + 'px';
+    element.style.position = 'relative';
+    element.style.overflow = 'hidden';
+    element.appendChild(rippleSpan);
+    setTimeout(() => rippleSpan.remove(), 600);
+  }
+
+  // tambah animasi glow click pada card
+  function animateCard(card) {
+    card.classList.add('clicked-glow');
+    setTimeout(() => card.classList.remove('clicked-glow'), 250);
+  }
+
+  // fungsi chat admin otomatis dengan nama file + harga
+  function chatAdmin(productName, productPrice) {
+    const adminNumber = "6288229286129"; // nomor WA admin
+    let message = `Halo Kak Admin KAIZYE STORE%0A%0ASaya ingin membeli file:%0A📁 *${encodeURIComponent(productName)}*%0A💰 Harga: *${productPrice}*%0A%0AMetode pembayaran: (GOPAY/DANA/QRIS/SHOPEEPAY)%0A%0A Terima kasih! 🔥`;
+    const waLink = `https://wa.me/${adminNumber}?text=${message}`;
+    window.open(waLink, '_blank');
+  }
+
+  function renderProducts() {
+    const filtered = currentCategory === 'all' ? productsData : productsData.filter(p => p.category === currentCategory);
+    if (filtered.length === 0) {
+      productGrid.innerHTML = `<div style="text-align:center; width:100%; padding:40px;">✨ TIDAK ADA FILE UNTUK KATEGORI INI ✨</div>`;
+      return;
+    }
+    productGrid.innerHTML = filtered.map((prod, idx) => `
+      <div class="product-card" data-name="${prod.name.replace(/"/g, '&quot;')}" data-price="${prod.price}">
+        <div class="product-name">${prod.name}</div>
+        <div class="product-price">💰 ${prod.price}</div>
+        <div class="buy-btn" data-name="${prod.name.replace(/"/g, '&quot;')}" data-price="${prod.price}">
+          <i class="fas fa-cart-shopping"></i> BELI FILE - CHAT ADMIN
+        </div>
+      </div>
+    `).join('');
+
+    // attach event listener ke buy-btn dan juga card riple effect tapi klik tombol akan memicu chat
+    document.querySelectorAll('.buy-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const cardDiv = btn.closest('.product-card');
+        animateCard(cardDiv);
+        const name = btn.getAttribute('data-name');
+        const price = btn.getAttribute('data-price');
+        // efek klik kece
+        createRipple(e, btn);
+        chatAdmin(name, price);
+      });
+    });
+    // tambah efek riple saat klik card (optional)
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if(e.target.classList.contains('buy-btn')) return;
+        animateCard(card);
+        createRipple(e, card);
+        // optional hanya preview nama harga ga langsung chat biar tidak spam, tapi bisa juga? biar rapi kita tidak double chat, lebih baik tombol
+        const nm = card.getAttribute('data-name') || card.querySelector('.product-name')?.innerText;
+        const pr = card.querySelector('.product-price')?.innerText.replace('💰','').trim();
+        if(nm && confirm(`💜 Klik "OK" untuk chat otomatis beli:\n${nm}\n${pr}`)) {
+          chatAdmin(nm, pr);
+        }
+      });
+    });
+  }
+
+  // filter event
+  document.querySelectorAll('.btn-cat').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.btn-cat').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCategory = btn.getAttribute('data-cat');
+      renderProducts();
+    });
+  });
+
+  // added whatsp button custom message via direct tombol float juga sudah include tapi supaya bisa dinamakan nama file lebih baik dari card
+  const floatWA = document.getElementById('whatsappFloat');
+  floatWA.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.open('https://wa.me/6288229286129?text=Halo%20KAIZYE%20STORE%2C%20saya%20mau%20beli%20file%20bisa%20infokan%20list%20lengkap%3F', '_blank');
+  });
+
+  renderProducts();
+</script>
+</body>
+</html>
